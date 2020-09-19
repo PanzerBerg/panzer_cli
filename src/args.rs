@@ -1,4 +1,5 @@
 use clap::ArgMatches;
+pub mod process_args;
 
 pub fn help_all() {
     println!("\n\r      '\
@@ -7,7 +8,7 @@ pub fn help_all() {
                 \r ____|__________\\_____
                 \r/ ___________________ \
                 \r\\/ _===============_ \\/
-                \r  '-===============-'\n\n
+                \r  '-===============-'\n
                 \rPanzer CLI help:\n
                 \rARGUMENTS:
                 \rNOTE: Argument values can also be 'all' that returns a list instead of a single value.
@@ -37,6 +38,7 @@ pub fn help_single_arg(matches: ArgMatches) {
 }
 
 pub fn call_arg_module(matches: ArgMatches) {
-    println!("Calls a argument module
-                \rArg: {:?}", matches.args);
+    if matches.is_present("processes") {
+        process_args::processes_main(matches);
+    }
 }
